@@ -10,5 +10,6 @@ namespace Finger_Print_WebApi.Data
 
         }
 
+
     }
 }

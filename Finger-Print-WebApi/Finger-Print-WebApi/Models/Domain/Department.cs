@@ -4,5 +4,11 @@
     {
         public int Id { get; set; }
         public string name { get; set; }
+
+        //Navigation Property
+
+        //one department have multiple employees
+        public IEnumerable<Employee> Employees { get; set; } 
+
     }
 }

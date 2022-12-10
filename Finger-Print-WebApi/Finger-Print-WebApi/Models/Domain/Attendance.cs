@@ -6,6 +6,12 @@
         public DateOnly date { get; set; }
         public TimeOnly in_time { get; set; }
         public TimeOnly out_time { get; set; }
-        public bool lates { get; set; }
+
+        //Foreign key
+        //public int Employee_id { get; set; }
+
+        //Navigation Property
+        public Employee Employee { get; set; }
+
     }
 }

@@ -21,16 +21,12 @@ namespace Finger_Print_WebApi.Controllers
         [HttpGet("GetAllEmployees")]
         public async Task<IActionResult> GetAllEmployees()
         {
-            var employees = await employeeRepository.GetAllAsync();
-            var employeesDto = mapper.Map<List<Models.DTO.EmpFullDataDto>>(employees);
-            return Ok(employeesDto);
+            return Ok(employeeRepository.GetAllAsync().Result);
         }
-        [HttpGet("GetDetailedEmployee")]
+        [HttpGet("GetEmployeeDepartment")]
         public async Task<IActionResult> GetDetailedEmployeesAsync()
         {
-            var employees = await employeeRepository.GetDetailsAsync();
-            var empdeptDto=mapper.Map<List<Models.DTO.EmployeeDepartmentDto>>(employees);
-            return Ok(empdeptDto);
+            return Ok(employeeRepository.GetDetailsAsync().Result);
         }
 
     }

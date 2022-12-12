@@ -14,11 +14,12 @@ namespace Finger_Print_WebApi.Repos.Repo
         {
             this.fingerPrintDBContext = fingerPrintDBContext;
         }
+
+
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
             return await fingerPrintDBContext.Employees.ToListAsync();
         }
-
         public async Task<IQueryable<Models.DTO.EmployeeDepartmentDto>> GetDetailsAsync()
         {
              var employee = from e in fingerPrintDBContext.Employees
@@ -26,7 +27,7 @@ namespace Finger_Print_WebApi.Repos.Repo
                              on e.Dept_id equals d.Id
                              join c in fingerPrintDBContext.Contracts
                              on e.Contract_id equals c.Id
-                            where e.Dept_id == 1
+                           // where e.Dept_id == 1
                              select new Models.DTO.EmployeeDepartmentDto
                              {
                                  Employeename = e.name,

@@ -14,33 +14,45 @@ namespace Finger_Print_WebApi.Data
         {
             modelBuilder.Entity<Employee>()
                 .HasOne(x => x.Department)
-                .WithMany(y => y.Employees);
+                .WithMany(y => y.Employees)
+                .HasForeignKey(x => x.Dept_id);
+
             modelBuilder.Entity<Employee>()
                 .HasOne(x => x.Contract)
-                .WithMany(e => e.Employees);
+                .WithMany(e => e.Employees)
+                .HasForeignKey(x => x.Contract_id);
+
             modelBuilder.Entity<Attendance>()
                 .HasOne(x => x.Employee)
-                .WithMany(e => e.Attendances);
+                .WithMany(e => e.Attendances)
+                .HasForeignKey(x=>x.Employee_id);
+
             modelBuilder.Entity<Mission>()
                 .HasOne(x => x.Employee)
-                .WithMany(e => e.Missions);
+                .WithMany(e => e.Missions)
+                .HasForeignKey(x=>x.Employee_id);
+            modelBuilder.Entity<Mission>()
+                .HasOne(x => x.Mtype)
+                .WithMany(e => e.Missions)
+                .HasForeignKey(x => x.Mtype_id);
+
             modelBuilder.Entity<Permission>()
                 .HasOne(x => x.Employee)
-                .WithMany(e => e.Permissions);
+                .WithMany(e => e.Permissions)
+                .HasForeignKey(x => x.Employee_id);
+            modelBuilder.Entity<Permission>()
+                .HasOne(x => x.Ptype)
+                .WithMany(e => e.Permissions)
+                .HasForeignKey(x => x.Ptype_id);
+
             modelBuilder.Entity<Vacation>()
                 .HasOne(x => x.Employee)
-                .WithMany(e => e.Vacations);
-            modelBuilder.Entity<Mtype>()
-                .HasOne(x => x.Missions)
-                .WithMany(e => e.Mtype);
-            modelBuilder.Entity<Vtype>()
-                .HasOne(x => x.Vacations)
-                .WithMany(e => e.);
+                .WithMany(e => e.Vacations)
+                .HasForeignKey(x => x.Employee_id);
             modelBuilder.Entity<Vacation>()
-                .HasOne(x => x.Employee)
-                .WithMany(e => e.Vacations);
-
-
+               .HasOne(x => x.Vtype)
+               .WithMany(e => e.Vacations)
+               .HasForeignKey(x => x.VType_id);
 
         }
 

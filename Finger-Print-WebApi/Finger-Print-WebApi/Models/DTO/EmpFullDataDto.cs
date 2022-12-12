@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Finger_Print_WebApi.Models.Domain;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Finger_Print_WebApi.Models.Domain
+namespace Finger_Print_WebApi.Models.DTO
 {
-    public class Employee
+    public class EmpFullDataDto
     {
-        //Properties
         public int Id { get; set; }
         public string name { get; set; }
         public string milatary_service_status { get; set; }
@@ -23,19 +23,12 @@ namespace Finger_Print_WebApi.Models.Domain
         public string job_description { get; set; }
         public byte[] photo { get; set; }
 
-        //ForeignKeys
+
         public int Dept_id { get; set; }
         public int Contract_id { get; set; }
 
-        //navigation property
-        public Department Department { get; set; }
-        public Contract Contract { get; set; }
-
-        public IEnumerable<Attendance> Attendances { get; set; }
-        public IEnumerable<Mission> Missions { get; set; }
-        public IEnumerable<Vacation> Vacations { get; set; }
-        public IEnumerable<Permission> Permissions { get; set; }
-
-        
+        //Navigation Prop
+        //public Department Department { get; set; }
+        //public Contract Contract { get; set; }
     }
 }

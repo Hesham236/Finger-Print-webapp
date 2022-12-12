@@ -7,6 +7,7 @@ namespace Finger_Print_WebApi.Models.Profiles
         public EmployeeProfile()
         {
             CreateMap<Models.Domain.Employee, Models.DTO.EmpFullDataDto>();
+            CreateMap<Models.Domain.Employee, Models.DTO.EmployeeDepartmentDto>();
         }
 
     }

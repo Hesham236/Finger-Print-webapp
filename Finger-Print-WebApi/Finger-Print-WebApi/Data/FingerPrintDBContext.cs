@@ -68,7 +68,5 @@ namespace Finger_Print_WebApi.Data
         public DbSet<Vacation> Vacations { get; set; }
         public DbSet<Vtype> Vtypes { get; set; }
         
-
-
     }
 }

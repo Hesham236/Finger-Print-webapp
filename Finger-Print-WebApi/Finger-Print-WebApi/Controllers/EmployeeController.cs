@@ -16,11 +16,8 @@ namespace Finger_Print_WebApi.Controllers
             this.mapper = mapper;
         }
 
-
-        /// <summary>
-        /// Routes
-        /// </summary>
-        /// <returns></returns>
+        // Routes
+       
         [HttpGet("GetAllEmployees")]
         public async Task<IActionResult> GetAllEmployees()
         {
@@ -28,8 +25,13 @@ namespace Finger_Print_WebApi.Controllers
             var employeesDto = mapper.Map<List<Models.DTO.EmpFullDataDto>>(employees);
             return Ok(employeesDto);
         }
-
-
+        [HttpGet("GetDetailedEmployee")]
+        public async Task<IActionResult> GetDetailedEmployeesAsync()
+        {
+            var employees = await employeeRepository.GetDetailsAsync();
+            var empdeptDto=mapper.Map<List<Models.DTO.EmployeeDepartmentDto>>(employees);
+            return Ok(empdeptDto);
+        }
 
     }
 }

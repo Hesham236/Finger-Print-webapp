@@ -19,15 +19,16 @@ namespace Finger_Print_WebApi.Controllers
         // Routes
        
         [HttpGet("GetAllEmployees")]
-        public async Task<IActionResult> GetAllEmployees()
+        public IActionResult GetAllEmployees()
         {
             return Ok(employeeRepository.GetAllAsync().Result);
         }
         [HttpGet("GetEmployeeDepartment")]
-        public async Task<IActionResult> GetDetailedEmployeesAsync()
+        public IActionResult GetDetailedEmployeesAsync()
         {
             return Ok(employeeRepository.GetDetailsAsync().Result);
         }
+
 
     }
 }

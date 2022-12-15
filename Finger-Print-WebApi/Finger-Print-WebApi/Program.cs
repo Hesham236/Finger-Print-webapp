@@ -1,7 +1,10 @@
 using Finger_Print_WebApi.Data;
 using Finger_Print_WebApi.Repos.IRepo;
 using Finger_Print_WebApi.Repos.Repo;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,21 @@ builder.Services.AddDbContext<FingerPrintDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("FingerPrint"));
 });
+
+//Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime= true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey= new SymmetricSecurityKey(
+             Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    });
 //Repository
 builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
 
@@ -35,6 +53,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

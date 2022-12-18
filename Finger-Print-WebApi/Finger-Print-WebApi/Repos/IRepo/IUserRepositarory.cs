@@ -8,5 +8,7 @@ namespace Finger_Print_WebApi.Repos.IRepo
         Task<IEnumerable<User>> GetUsersAsync();
         Task<User> AddUser(UserDto user);
         Task<User> GetUserbyID(int id);
+        Task<User> DeleteUser(int id);
+        Task<User> UpdateUser(int id , User user);
     }
 }

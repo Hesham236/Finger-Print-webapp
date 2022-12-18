@@ -39,5 +39,27 @@ namespace Finger_Print_WebApi.Repos.Repo
         {
             return await fingerPrintDBContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<User> DeleteUser(int id)
+        {
+            var user = await fingerPrintDBContext.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (user ==null) return null;
+            fingerPrintDBContext.Users.Remove(user);
+            await fingerPrintDBContext.SaveChangesAsync();
+            return user; 
+        }
+
+        public async Task<User> UpdateUser(int id, User user)
+        {
+           var founduser = await fingerPrintDBContext.Users.FirstOrDefaultAsync(x =>x.Id== id);
+           if (founduser == null) return null;
+
+           founduser.name = user.name;
+           founduser.password = user.password;
+           founduser.authority = user.authority;
+
+           await fingerPrintDBContext.SaveChangesAsync();
+           return user;
+        }
     }
 }

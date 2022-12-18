@@ -3,6 +3,7 @@ using Finger_Print_WebApi.Models.Domain;
 using Finger_Print_WebApi.Models.DTO.UserDto;
 using Finger_Print_WebApi.Repos.IRepo;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 
 namespace Finger_Print_WebApi.Controllers
 {
@@ -42,8 +43,36 @@ namespace Finger_Print_WebApi.Controllers
             return Ok(userdto);
         }
 
-        //[HttpDelete("DeleteUser")]
+        [HttpDelete("DeleteUser")]
+        public async Task<IActionResult> DeleteUserAsync([FromRoute]int id)
+        {
+            await userRepositarory.DeleteUser(id);
+            return Ok("User Deleted");
+        }
         
-        //[HttpPut("UpdateUser")]
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> UpdateUserAsync([FromRoute] int id, [FromBody] UserDto userDto)
+        {
+            var user = new Models.Domain.User()
+            {
+                name = userDto.name,
+                password= userDto.password,
+                authority= userDto.authority,
+            };
+
+            if(user == null) return NotFound();
+
+            user = await userRepositarory.UpdateUser(id,user);
+
+            var userdt = new Models.DTO.UserDto.FullUserDto()
+            {
+                id = user.Id,
+                name = user.name,
+                password = user.password,
+                authority= user.authority,
+            };
+
+            return Ok("User Updated");
+        }
     }
 }

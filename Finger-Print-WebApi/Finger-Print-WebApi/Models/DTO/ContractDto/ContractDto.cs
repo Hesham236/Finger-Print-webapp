@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Finger_Print_WebApi.Models.DTO
+namespace Finger_Print_WebApi.Models.DTO.ContractDto
 {
     public class ContractDto
     {

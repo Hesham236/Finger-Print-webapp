@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Finger_Print_WebApi.Models.DTO.ContractDto;
 
 namespace Finger_Print_WebApi.Models.Profiles
 {
@@ -6,7 +7,7 @@ namespace Finger_Print_WebApi.Models.Profiles
     {
         public ContractProfile()
         {
-            CreateMap<Models.Domain.Contract,Models.DTO.ContractDto>();
+            CreateMap<Models.Domain.Contract,ContractDto>();
         }
     }
 }

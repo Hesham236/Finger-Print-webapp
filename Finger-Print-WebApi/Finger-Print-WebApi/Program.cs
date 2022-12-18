@@ -4,6 +4,7 @@ using Finger_Print_WebApi.Repos.Repo;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.VisualStudio.Settings;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,7 +38,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //Repository
 builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
 builder.Services.AddScoped<IUserRepositarory, UserReposiatory>();
-
+//builder.Services.AddTransient<ISettingsService, SettingsService>();
 
 //Automapper
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

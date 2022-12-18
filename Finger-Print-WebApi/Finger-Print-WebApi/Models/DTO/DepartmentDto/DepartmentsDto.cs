@@ -1,4 +1,4 @@
-﻿namespace Finger_Print_WebApi.Models.DTO
+﻿namespace Finger_Print_WebApi.Models.DTO.DepartmentDto
 {
     public class DepartmentsDto
     {

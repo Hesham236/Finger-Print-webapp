@@ -38,7 +38,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //Repository
 builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
 builder.Services.AddScoped<IUserRepositarory, UserReposiatory>();
-//builder.Services.AddTransient<ISettingsService, SettingsService>();
+
 
 //Automapper
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

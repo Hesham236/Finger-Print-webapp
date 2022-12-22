@@ -10,10 +10,12 @@ namespace Finger_Print_WebApi.Repos.Repo
     public class UserReposiatory : IUserRepositarory
     {
         private readonly FingerPrintDBContext fingerPrintDBContext;
+       
 
         public UserReposiatory(FingerPrintDBContext fingerPrintDBContext)
         {
             this.fingerPrintDBContext = fingerPrintDBContext;
+            
         }
 
 
@@ -22,25 +24,25 @@ namespace Finger_Print_WebApi.Repos.Repo
             return await fingerPrintDBContext.Users.ToListAsync();
         }
 
-        public async Task<User> AddUser(UserDto user)
+        public async Task<User> AddUserAsync(UserDto user)
         {
-          var userdto = new Models.Domain.User()
-          {
+             var userdto = new Models.Domain.User()
+             {
                 name = user.name,
                 password = user.password,
                 authority = user.authority,
-          };
-          var result = await fingerPrintDBContext.Users.AddAsync(userdto);
-          await fingerPrintDBContext.SaveChangesAsync();
-          return userdto;
+             };
+            var result = await fingerPrintDBContext.Users.AddAsync(userdto);
+            await fingerPrintDBContext.SaveChangesAsync();
+            return userdto;
         }
 
-        public async Task<User> GetUserbyID(int id)
+        public async Task<User> GetUserbyIDAsync(int id)
         {
             return await fingerPrintDBContext.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<User> DeleteUser(int id)
+        public async Task<User> DeleteUserAsync(int id)
         {
             var user = await fingerPrintDBContext.Users.FirstOrDefaultAsync(x => x.Id == id);
             if (user ==null) return null;
@@ -49,9 +51,9 @@ namespace Finger_Print_WebApi.Repos.Repo
             return user; 
         }
 
-        public async Task<User> UpdateUser(int id, User user)
+        public async Task<User> UpdateUserAsync(int id, User user)
         {
-           var founduser = await fingerPrintDBContext.Users.FirstOrDefaultAsync(x =>x.Id== id);
+           var founduser = await fingerPrintDBContext.Users.FirstOrDefaultAsync(x =>x.Id == id);
            if (founduser == null) return null;
 
            founduser.name = user.name;

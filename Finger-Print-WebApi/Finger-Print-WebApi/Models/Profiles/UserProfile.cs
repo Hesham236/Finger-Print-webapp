@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Finger_Print_WebApi.Models.DTO.UserDto;
+using Finger_Print_WebApi.Models.Domain;
 
 namespace Finger_Print_WebApi.Models.Profiles
 {
@@ -7,8 +8,9 @@ namespace Finger_Print_WebApi.Models.Profiles
     {
         public UserProfile() 
         {
-            CreateMap<Models.Domain.User, UserDto>();
-            CreateMap<Models.Domain.User, LoginRequest>();
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
+            CreateMap<User, LoginRequest>();
         }
     }
 }

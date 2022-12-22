@@ -30,48 +30,33 @@ namespace Finger_Print_WebApi.Controllers
         [HttpPost("AddUser")]
         public async Task<IActionResult> AddUserAsync(UserDto adduser)
         {
-            await userRepositarory.AddUser(adduser);
+            await userRepositarory.AddUserAsync(adduser);
             return Ok("New User Created");
         }
 
-        [HttpGet("GetUserbyID/")]
+        [HttpGet("GetUserbyID/{id:int}")]
         public async Task<IActionResult> GetUserByIdAsync(int id)
         {
-            var user = await userRepositarory.GetUserbyID(id);
+            var user = await userRepositarory.GetUserbyIDAsync(id);
             if(user == null) return NotFound();
             var userdto = mapper.Map<Models.DTO.UserDto.UserDto>(user);
             return Ok(userdto);
         }
 
-        [HttpDelete("DeleteUser")]
+        [HttpDelete("DeleteUser/{id:int}")]
         public async Task<IActionResult> DeleteUserAsync([FromRoute]int id)
         {
-            await userRepositarory.DeleteUser(id);
+            await userRepositarory.DeleteUserAsync(id);
             return Ok("User Deleted");
         }
         
-        [HttpPut("UpdateUser")]
+        [HttpPut("UpdateUser/{id:int}")]
         public async Task<IActionResult> UpdateUserAsync([FromRoute] int id, [FromBody] UserDto userDto)
         {
-            var user = new Models.Domain.User()
-            {
-                name = userDto.name,
-                password= userDto.password,
-                authority= userDto.authority,
-            };
-
-            if(user == null) return NotFound();
-
-            user = await userRepositarory.UpdateUser(id,user);
-
-            var userdt = new Models.DTO.UserDto.FullUserDto()
-            {
-                id = user.Id,
-                name = user.name,
-                password = user.password,
-                authority= user.authority,
-            };
-
+            var user = mapper.Map<User>(userDto);
+            if (user == null) return NotFound();
+            user = await userRepositarory.UpdateUserAsync(id,user);
+            var userdt = mapper.Map<UserDto>(user);
             return Ok("User Updated");
         }
     }

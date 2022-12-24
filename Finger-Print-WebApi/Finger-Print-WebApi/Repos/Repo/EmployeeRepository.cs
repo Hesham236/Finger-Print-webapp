@@ -62,13 +62,30 @@ namespace Finger_Print_WebApi.Repos.Repo
             await fingerPrintDBContext.SaveChangesAsync();
             return emp;
         }
-        public async Task<Employee> UpdateEmployeeAsync(int id, EmpFullDataDto empFullDataDto)
+        public async Task<Employee> UpdateEmployeeAsync(int id, Employee employee)
         {
             var emp = await fingerPrintDBContext.Employees.FirstOrDefaultAsync(x=>x.Id == id);
             if (emp == null) return null;
-            var empdto = mapper.Map<Employee>(empFullDataDto);
+
+            emp.name = employee.name;
+            emp.milatary_service_status = employee.milatary_service_status;
+            emp.national_id= employee.national_id;
+            emp.dob= employee.dob;
+            emp.government = employee.government;
+            emp.address= employee.address;
+            emp.martial_status= employee.martial_status;
+            emp.num_children= employee.num_children;
+            emp.social_insurance= employee.social_insurance;
+            emp.phone_number= employee.phone_number;
+            emp.religion= employee.religion;
+            emp.education= employee.education;
+            emp.job_description= employee.job_description;
+            emp.photo= employee.photo;
+            emp.Dept_id = employee.Dept_id;
+            emp.Contract_id= employee.Contract_id;
+
             await fingerPrintDBContext.SaveChangesAsync();
-            return empdto;
+            return emp;
         }
     }
 }

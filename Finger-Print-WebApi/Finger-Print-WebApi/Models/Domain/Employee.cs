@@ -21,7 +21,7 @@ namespace Finger_Print_WebApi.Models.Domain
         public string religion { get; set; }
         public string education { get; set; }
         public string job_description { get; set; }
-        public byte[] photo { get; set; }
+        public byte[] ?photo { get; set; }
 
         //ForeignKeys
         public int Dept_id { get; set; }

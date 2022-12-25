@@ -81,7 +81,6 @@ namespace FingerPrintWebApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -146,7 +145,6 @@ namespace FingerPrintWebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("photo")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("religion")

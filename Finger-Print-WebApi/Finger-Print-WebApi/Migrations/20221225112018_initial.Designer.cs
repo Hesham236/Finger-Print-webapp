@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FingerPrintWebApi.Migrations
 {
     [DbContext(typeof(FingerPrintDBContext))]
-    [Migration("20221212090637_Initial")]
-    partial class Initial
+    [Migration("20221225112018_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,7 +84,6 @@ namespace FingerPrintWebApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -149,7 +148,6 @@ namespace FingerPrintWebApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("photo")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("religion")

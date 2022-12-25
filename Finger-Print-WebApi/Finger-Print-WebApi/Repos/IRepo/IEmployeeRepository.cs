@@ -11,5 +11,6 @@ namespace Finger_Print_WebApi.Repos.IRepo
         Task<Employee> GetEmployeeByIDAsync(int id);
         Task<Employee> DeleteEmployeeAsync(int id);
         Task<Employee> UpdateEmployeeAsync(int id, Employee employee);
+        
     }
 }

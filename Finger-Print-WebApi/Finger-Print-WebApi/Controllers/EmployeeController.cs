@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Finger_Print_WebApi.Models.Domain;
 using Finger_Print_WebApi.Models.DTO.EmployeeDto;
-using Finger_Print_WebApi.Models.DTO.UserDto;
 using Finger_Print_WebApi.Repos.IRepo;
-using Finger_Print_WebApi.Repos.Repo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Finger_Print_WebApi.Controllers
@@ -59,10 +57,8 @@ namespace Finger_Print_WebApi.Controllers
             if (emp == null) return NotFound();
             emp = await employeeRepository.UpdateEmployeeAsync(id, emp);
             var empdt = mapper.Map<EmpFullDataDto>(emp);
-            return Ok("User Updated");
+            return Ok("employee Updated");
         }
-
-
 
     }
 }

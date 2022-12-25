@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FingerPrintWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,7 +32,7 @@ namespace FingerPrintWebApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -112,7 +112,7 @@ namespace FingerPrintWebApi.Migrations
                     religion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     education = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     jobdescription = table.Column<string>(name: "job_description", type: "nvarchar(max)", nullable: false),
-                    photo = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    photo = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Deptid = table.Column<int>(name: "Dept_id", type: "int", nullable: false),
                     Contractid = table.Column<int>(name: "Contract_id", type: "int", nullable: false)
                 },

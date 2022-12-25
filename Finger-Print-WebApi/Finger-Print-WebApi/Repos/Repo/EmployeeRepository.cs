@@ -4,7 +4,6 @@ using Finger_Print_WebApi.Models.Domain;
 using Finger_Print_WebApi.Models.DTO.EmployeeDto;
 using Finger_Print_WebApi.Repos.IRepo;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Finger_Print_WebApi.Repos.Repo
 {
@@ -12,7 +11,6 @@ namespace Finger_Print_WebApi.Repos.Repo
     {
         private readonly FingerPrintDBContext fingerPrintDBContext;
         private readonly IMapper mapper;
-
         public EmployeeRepository(FingerPrintDBContext fingerPrintDBContext,IMapper mapper)
         {
             this.fingerPrintDBContext = fingerPrintDBContext;
@@ -33,7 +31,7 @@ namespace Finger_Print_WebApi.Repos.Repo
                              join c in fingerPrintDBContext.Contracts
                              on e.Contract_id equals c.Id
                            // where e.Dept_id == 1
-                             select new Models.DTO.EmployeeDto.EmployeeDepartmentDto
+                             select new EmployeeDepartmentDto
                              {
                                  Employeename = e.name,
                                  Id = e.Id,
@@ -41,7 +39,6 @@ namespace Finger_Print_WebApi.Repos.Repo
                                  ContractType = c.type
                              };
             return employee;
-            
         }
         public async Task<Employee> AddEmployeeAsync(EmpFullDataDto empFullDataDto )
         {

@@ -38,6 +38,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //Repository
 builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
 builder.Services.AddScoped<IUserRepositarory, UserReposiatory>();
+builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
+builder.Services.AddScoped<IContractRepository,ContractRepository>();
 
 
 //Automapper

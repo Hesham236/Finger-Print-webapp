@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FingerPrintWebApi.Migrations
 {
     [DbContext(typeof(FingerPrintDBContext))]
-    [Migration("20221225112018_initial")]
-    partial class initial
+    [Migration("20221225160134_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

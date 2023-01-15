@@ -17,13 +17,28 @@ namespace Finger_Print_WebApi.Controllers
             this.employeeRepository = employeeRepository;
             this.mapper = mapper;
         }
-
-        // Routes
+        
+        /// <summary>
+        /// Routes
+        /// </summary>
        
         [HttpGet("GetAllEmployees")]
         public async Task<IActionResult> GetAllEmployeesAsync()
         {
             return Ok(await employeeRepository.GetAllAsync());
+        }
+        [HttpGet("GetEmployeeByID/{id:int}")]
+        public async Task<IActionResult> GetUserByIdAsync(int id)
+        {
+            var emp = await employeeRepository.GetEmployeeByIDAsync(id);
+            if(emp == null) return NotFound();
+            var empdto = mapper.Map<Models.DTO.EmployeeDto.EmpFullDataDto>(emp);
+            return Ok(empdto);
+        }
+        [HttpGet("GetEmployeeByDepartmentId/{Dept_id:int}")]
+        public async Task<IActionResult> GetEmployeeByDepartmentAsync(int Dept_id)
+        {
+            return Ok(await employeeRepository.GetEmployeeByDepartmentAsync(Dept_id));
         }
         [HttpGet("GetEmployeeDepartment")]
         public async Task<IActionResult> GetDetailedEmployeesAsync()
@@ -36,14 +51,6 @@ namespace Finger_Print_WebApi.Controllers
             await employeeRepository.AddEmployeeAsync(empFullDataDto);
             return Ok("User Created");
         }
-        [HttpGet("GetEmployeeByID/{id:int}")]
-        public async Task<IActionResult> GetUserByIdAsync(int id)
-        {
-            var emp = await employeeRepository.GetEmployeeByIDAsync(id);
-            if(emp == null) return NotFound();
-            var empdto = mapper.Map<Models.DTO.EmployeeDto.EmpFullDataDto>(emp);
-            return Ok(empdto);
-        }
         [HttpDelete("DeleteEmployee/{id:int}")]
         public async Task<IActionResult> DeleteEmployeeAsync(int id)
         {
@@ -51,7 +58,8 @@ namespace Finger_Print_WebApi.Controllers
             return Ok("Employee: " + id.ToString() + " deleted succesfully");
         }
         [HttpPut("UpdateEmployee/{id:int}")]
-        public async Task<IActionResult> UpdateEmployeeAsync([FromRoute] int id,[FromBody] EmpFullDataDto empFullDataDto)
+        public async Task<IActionResult> UpdateEmployeeAsync([FromRoute] int id,
+            [FromBody] EmpFullDataDto empFullDataDto)
         {
             var emp = mapper.Map<Employee>(empFullDataDto);
             if (emp == null) return NotFound();
@@ -59,6 +67,7 @@ namespace Finger_Print_WebApi.Controllers
             var empdt = mapper.Map<EmpFullDataDto>(emp);
             return Ok("employee Updated");
         }
+
 
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FingerPrintWebApi.Migrations
 {
     [DbContext(typeof(FingerPrintDBContext))]
-    [Migration("20221225160134_Initial")]
-    partial class Initial
+    [Migration("20230115103103_null notes")]
+    partial class nullnotes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -316,7 +316,6 @@ namespace FingerPrintWebApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("notes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("start_date")

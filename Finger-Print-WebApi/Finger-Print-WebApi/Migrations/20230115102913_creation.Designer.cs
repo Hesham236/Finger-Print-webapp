@@ -4,6 +4,7 @@ using Finger_Print_WebApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FingerPrintWebApi.Migrations
 {
     [DbContext(typeof(FingerPrintDBContext))]
-    partial class FingerPrintDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230115102913_creation")]
+    partial class creation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -313,6 +316,7 @@ namespace FingerPrintWebApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("notes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("start_date")
